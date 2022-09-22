@@ -1,16 +1,17 @@
 import { useFormik } from "formik";
+import { basicSchema } from "../schemas";
 
 const BasicForm = () => {
   // const formik = useFormik({
-    const {values, handleBlur,handleChange} = useFormik({
+  const { values, handleBlur, handleChange } = useFormik({
     initialValues: {
       email: "",
       age: "",
       password: "",
       confirmPAssword: "",
     },
+    validationSchema: basicSchema,
   });
-
 
   return (
     <form autoComplete="off">
