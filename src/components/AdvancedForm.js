@@ -1,16 +1,22 @@
-import { Form, Formik, Field } from "formik";
+import { Form, Formik } from "formik";
 import { advancedSchema } from "../schemas";
+import CustomCheckbox from "./CustomCheckbox";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
-import CustomCheckbox from "./CustomCheckbox";
+
+const onSubmit = async (values, actions) => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  actions.resetForm();
+};
 
 const AdvancedForm = () => {
   return (
     <Formik
       initialValues={{ username: "", jobType: "", acceptedTos: false }}
       validationSchema={advancedSchema}
+      onSubmit={onSubmit}
     >
-      {(props) => (
+      {({ isSubmitting }) => (
         <Form>
           <CustomInput
             label="Username"
@@ -18,14 +24,6 @@ const AdvancedForm = () => {
             type="text"
             placeholder="Enter your username"
           />
-          {/* <Field type="name" name="name" placeholder="Name" /> */}
-          {/* <input
-            type="text"
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            value={props.values.name}
-            name="name"
-          /> */}
           <CustomSelect
             label="Job Type"
             name="jobType"
@@ -38,7 +36,9 @@ const AdvancedForm = () => {
             <option value="other">Other</option>
           </CustomSelect>
           <CustomCheckbox type="checkbox" name="acceptedTos" />
-          <button type="submit">Submit</button>
+          <button disabled={isSubmitting} type="submit">
+            Submit
+          </button>
         </Form>
       )}
     </Formik>
