@@ -1,14 +1,16 @@
 import { useFormik } from "formik";
 import { basicSchema } from "../schemas";
 
-const onSubmit = (values, actions) => {
+const onSubmit = async (values, actions) => {
   console.log(values);
   console.log(actions);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  actions.resetForm();
 };
 
 const BasicForm = () => {
   // const formik = useFormik({
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+  const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
         email: "",
@@ -72,7 +74,8 @@ const BasicForm = () => {
       {errors.confirmPassword && touched.confirmPassword && (
         <p className="error">{errors.confirmPassword}</p>
       )}
-      <button type="submit">Submit</button>
+      {/* <button disabled={isSubmitting} type="submit">Submit</button> */}
+      <button disabled={!values.password || !values.email} type="submit">Submit</button>
     </form>
   );
 };
