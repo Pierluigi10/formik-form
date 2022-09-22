@@ -1,9 +1,13 @@
 import { Form, Formik, Field } from "formik";
+import { advancedSchema } from "../schemas";
 import CustomInput from "./CustomInput";
 
 const AdvancedForm = () => {
   return (
-    <Formik initialValues={{ username: "jared" }}>
+    <Formik
+      initialValues={{ username: "", jobType: "", acceptedTos: false }}
+      validationSchema={advancedSchema}
+    >
       {(props) => (
         <Form>
           <CustomInput
@@ -12,7 +16,7 @@ const AdvancedForm = () => {
             type="text"
             placeholder="Enter your username"
           />
-          <Field type="name" name="name" placeholder="Name" />
+          {/* <Field type="name" name="name" placeholder="Name" /> */}
           {/* <input
             type="text"
             onChange={props.handleChange}
