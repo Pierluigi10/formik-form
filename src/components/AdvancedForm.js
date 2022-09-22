@@ -1,20 +1,21 @@
-import { Formik } from "formik";
+import {Form, Formik, Field } from "formik";
 
 const AdvancedForm = () => {
   return (
     <Formik initialValues={{ name: "jared" }}>
       {(props) => (
-        <form onSubmit={props.handleSubmit}>
-          <input
+        <Form>
+          <Field type="name" name="name" placeholder="Name" />
+          {/* <input
             type="text"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
             value={props.values.name}
             name="name"
-          />
-          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          /> */}
+        
           <button type="submit">Submit</button>
-        </form>
+        </Form>
       )}
     </Formik>
   );
