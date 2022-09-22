@@ -1,10 +1,17 @@
-import {Form, Formik, Field } from "formik";
+import { Form, Formik, Field } from "formik";
+import CustomInput from "./CustomInput";
 
 const AdvancedForm = () => {
   return (
-    <Formik initialValues={{ name: "jared" }}>
+    <Formik initialValues={{ username: "jared" }}>
       {(props) => (
         <Form>
+          <CustomInput
+            label="Username"
+            name="username"
+            type="text"
+            placeholder="Enter your username"
+          />
           <Field type="name" name="name" placeholder="Name" />
           {/* <input
             type="text"
@@ -13,7 +20,7 @@ const AdvancedForm = () => {
             value={props.values.name}
             name="name"
           /> */}
-        
+
           <button type="submit">Submit</button>
         </Form>
       )}
