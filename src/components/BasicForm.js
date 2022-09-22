@@ -1,9 +1,13 @@
 import { useFormik } from "formik";
 import { basicSchema } from "../schemas";
 
+const onSubmit = () => {
+  console.log("submitted");
+};
+
 const BasicForm = () => {
   // const formik = useFormik({
-  const { values, handleBlur, handleChange } = useFormik({
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
       age: "",
@@ -11,10 +15,11 @@ const BasicForm = () => {
       confirmPAssword: "",
     },
     validationSchema: basicSchema,
+    onSubmit,
   });
-
+  console.log("errors",errors);
   return (
-    <form autoComplete="off">
+    <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email">Email</label>
       <input
         value={values.email}
