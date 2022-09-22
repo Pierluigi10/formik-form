@@ -2,6 +2,7 @@ import { Form, Formik, Field } from "formik";
 import { advancedSchema } from "../schemas";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
+import CustomCheckbox from "./CustomCheckbox";
 
 const AdvancedForm = () => {
   return (
@@ -36,7 +37,7 @@ const AdvancedForm = () => {
             <option value="manager">Product Manager</option>
             <option value="other">Other</option>
           </CustomSelect>
-
+          <CustomCheckbox type="checkbox" name="acceptedTos" />
           <button type="submit">Submit</button>
         </Form>
       )}
